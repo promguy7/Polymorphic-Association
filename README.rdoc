@@ -1,0 +1,68 @@
+== README
+
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+Things you may want to cover:
+
+* Ruby version
+Rails 4
+
+* System dependencies
+Sefault
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+Polymorphic Association
+
+http://www.gotealeaf.com/blog/understanding-polymorphic-associations-in-rails    
+
+class Picture < ActiveRecord::Base
+ belongs_to :imageable, polymorphic: true
+end
+class Employee < ActiveRecord::Base
+ has_many :pictures, as: :imageable
+end
+class Product < ActiveRecord::Base
+ has_many :pictures, as: :imageable
+end
+
+
+QUERIES:
+
+1.rails generate scaffold Employee name:string title:string address:text
+2.rails generate scaffold Product name:string title:string
+3.rails generate model Picture name:string imageable:references{polymorphic}
+4.rake db:migrate
+5.@emp=Employee.find_or_create_by(name: 'Emp1')
+6.@emp.pictures.find_or_create_by(name: 'Emp1pic1')
+7.@emp.pictures.find_or_create_by(name: 'Emp1pic2')
+8.@emp.pictures
+#<ActiveRecord::Associations::CollectionProxy [#<Picture id: 1, name: "Emp1pic1", imageable_id: 1, imageable_type: "Employee", created_at: "2015-07-02 09:15:57", upda
+ "2015-07-02 09:15:57">, #<Picture id: 2, name: "Emp1pic2", imageable_id: 1, imageable_type: "Employee", created_at: "2015-07-02 09:16:04", updated_at: "2015-07-02 09
+>]>
+
+9. @pro=Product.find_or_create_by(name: 'pro1')
+10.@pro.pictures.find_or_create_by(name: 'pro1pic1')
+11.@pro.pictures.find_or_create_by(name: 'pro1pic2')
+12.@pro.pictures
+ #<ActiveRecord::Associations::CollectionProxy [#<Picture id: 3, name: "pro1pic1", imageable_id: 1, imageable_type: "Product", created_at: "2015-07-02 09:18:02", update
+ "2015-07-02 09:18:02">, #<Picture id: 4, name: "pro1pic2", imageable_id: 1, imageable_type: "Product", created_at: "2015-07-02 09:18:09", updated_at: "2015-07-02 09:18
+13.Picture.all.pluck(:imageable_id,:imageable_type)
+[[1, "Employee"], [1, "Employee"], [1, "Product"], [1, "Product"]]
+
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
+
+
+Please feel free to use a different markup language if you do not plan to run
+<tt>rake doc:app</tt>.
