@@ -6,21 +6,30 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
+ruby 2.0.0
+
+*Rails version 4.1.8
+
 Rails 4
 
 * System dependencies
-Sefault
+   Default
 
 * Configuration
 
 * Database creation
 
+  Sqllite3
+
 * Database initialization
+   Predifined
 
 * How to run the test suite
-Polymorphic Association
+  Follow the steps:
 
-http://www.gotealeaf.com/blog/understanding-polymorphic-associations-in-rails    
+  Polymorphic Association
+
+ http://www.gotealeaf.com/blog/understanding-polymorphic-associations-in-rails    
 
 class Picture < ActiveRecord::Base
  belongs_to :imageable, polymorphic: true
@@ -58,11 +67,8 @@ QUERIES:
 
 
 * Services (job queues, cache servers, search engines, etc.)
-
+ None
 * Deployment instructions
-
-* ...
-
-
+  Fork And Learn
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
